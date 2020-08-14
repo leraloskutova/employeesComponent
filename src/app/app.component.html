@@ -1,0 +1,21 @@
+<div class="container">
+    <table align="center">
+    <tr class="title">
+        <th width="32"></th>
+        <th width="30%">Имя</th>
+        <th width="40%">Фамилия</th>
+        <th ></th>
+    </tr>
+    <tr class="person" *ngFor="let person of persons">
+        <td>
+            <img src="assets/images/icon_user.png" alt="User">
+        </td>
+        <td>{{person?.firstName}}</td>
+        <td>{{person?.lastName}}</td>
+        <td class="icons">
+            <a href="#"><img class="edit" src="assets/images/icon_edit.png" alt="Edit"/></a>
+            <a href="#"><img class="delete" src="assets/images/icon_delete.png" alt="Delete"/></a>
+        </td>
+    </tr>
+    </table>
+</div>

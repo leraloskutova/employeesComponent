@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+}
+table {
+    width: 70%;
+    min-width: 500px;
+    max-width: 1180px;
+    border-collapse: collapse;
+}
+th {
+    text-align: left;
+    font-size: 20px;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+td {
+    padding: 5px 10px 0 10px;
+    border-bottom: 1px solid #ccc;
+}
+.person:hover {
+    background-color: #fcfcfc;
+}
+.icons {
+    text-align: right;
+}
+.edit {
+    background-color: #cefcb3;
+    opacity: 0.4;
+}
+.edit:hover {
+    opacity: 1;
+}
+.delete {
+    background-color: #e3a9b2;
+    opacity: 0.4;
+}
+.delete:hover {
+    opacity: 1;
+}

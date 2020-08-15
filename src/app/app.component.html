@@ -1,21 +1,102 @@
 <div class="container">
     <table align="center">
-    <tr class="title">
-        <th width="32"></th>
-        <th width="30%">Имя</th>
-        <th width="40%">Фамилия</th>
-        <th ></th>
-    </tr>
-    <tr class="person" *ngFor="let person of persons">
-        <td>
-            <img src="assets/images/icon_user.png" alt="User">
-        </td>
-        <td>{{person?.firstName}}</td>
-        <td>{{person?.lastName}}</td>
-        <td class="icons">
-            <a href="#"><img class="edit" src="assets/images/icon_edit.png" alt="Edit"/></a>
-            <a href="#"><img class="delete" src="assets/images/icon_delete.png" alt="Delete"/></a>
-        </td>
-    </tr>
+        <tr class="title">
+            <th width="32"></th>
+            <th width="30%">Имя</th>
+            <th width="40%">Фамилия</th>
+            <th ></th>
+        </tr>
+        <tr class="person" *ngFor="let person of persons">
+            <td>
+                <img src="assets/images/icon_user.png" alt="User">
+            </td>
+            <td>{{person?.firstName}}</td>
+            <td>{{person?.lastName}}</td>
+            <td class="icons">
+                <a href="#editPerson" title="Edit">
+                    <img class="edit" src="assets/images/icon_edit.png"
+                         alt="Edit" (click)="selectRow(person)"/>
+                </a>
+                <a href="#deletePerson" title="Delete">
+                    <img class="delete" src="assets/images/icon_delete.png"
+                         alt="Delete" (click)="selectRow(person)"/>
+                </a>
+            </td>
+        </tr>
     </table>
+    <div class="create">
+        <a href="#createPerson" title="Create" class="create_link">Добавить сотрудника</a>
+    </div>
+
+
+    <div id="editPerson" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Редактирование сотрудника</h3>
+                    <a href="#" title="Close" class="close">×</a>
+                </div>
+                <div class="modal-body">
+                    <div class="back">
+                        <a href="#" title="Back" class="back_link">
+                            <img class="icon_back" src="assets/images/icon_back.png" alt="Back"/>Назад к списку</a>
+                    </div>
+                    <form #editForm="ngForm" novalidate>
+                        <input class="input_data" type="text" name="firstName"
+                               value="{{person.firstName}}" [(ngModel)]="person.firstName" required><br>
+                        <input class="input_data" type="text" name="lastName"
+                               value="{{person.lastName}}" [(ngModel)]="person.lastName" required><br>
+                        <input [disabled]="editForm.invalid" class="button" type="submit"
+                               (click)="put(person)" value="Сохранить">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deletePerson" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Удаление сотрудника</h3>
+                    <a href="#" title="Close" class="close">×</a>
+                </div>
+                <div class="modal-body">
+                    <p>Вы уверены, что хотите удалить {{person.firstName}} {{person.lastName}}?</p>
+                    <form action="#">
+                        <div>
+                            <input class="button" type="submit" (click)="delete(person)" value="Да">
+                            <input class="button" type="submit" (click)="closeWindow()" value="Нет">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="createPerson" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Создание сотрудника</h3>
+                    <a href="#" title="Close" class="close">×</a>
+                </div>
+                <div class="modal-body">
+                    <div class="back">
+                        <a href="#" title="Back" class="back_link">
+                            <img class="icon_back" src="assets/images/icon_back.png" alt="Back"/>Назад к списку</a>
+                    </div>
+                    <form #createForm="ngForm" novalidate>
+                        <input class="input_data" type="text" name="firstName" [(ngModel)]="person.firstName"
+                               placeholder="Введите имя сотрудника" required/><br>
+                        <input class="input_data" type="text" name="lastName" [(ngModel)]="person.lastName"
+                               placeholder="Введите фамилию сотрудника" required/><br>
+                        <input [disabled]="createForm.invalid" class="button" type="submit"
+                               (click)="post(person)" value="Сохранить">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

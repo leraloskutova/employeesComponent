@@ -1,10 +1,16 @@
+<div class="menu">
+    <div class="create">
+        <a href="#createPerson" title="Create" class="create_link">Добавить сотрудника</a>
+    </div>
+</div>
+
 <div class="container">
     <table align="center">
         <tr class="title">
-            <th width="32"></th>
+            <th width="32px"></th>
             <th width="30%">Имя</th>
-            <th width="40%">Фамилия</th>
-            <th ></th>
+            <th >Фамилия</th>
+            <th width="64px"></th>
         </tr>
         <tr class="person" *ngFor="let person of persons">
             <td>
@@ -24,21 +30,18 @@
             </td>
         </tr>
     </table>
-    <div class="create">
-        <a href="#createPerson" title="Create" class="create_link">Добавить сотрудника</a>
-    </div>
-
-
+    <div>{{error}}</div>
+<!-- модальное окно редактирования сотрудника -->
     <div id="editPerson" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">Редактирование сотрудника</h3>
-                    <a href="#" title="Close" class="close">×</a>
+                    <a (click)="closeWindow()" title="Close" class="close">×</a>
                 </div>
                 <div class="modal-body">
                     <div class="back">
-                        <a href="#" title="Back" class="back_link">
+                        <a (click)="closeWindow()" title="Back" class="back_link">
                             <img class="icon_back" src="assets/images/icon_back.png" alt="Back"/>Назад к списку</a>
                     </div>
                     <form #editForm="ngForm" novalidate>
@@ -59,7 +62,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">Удаление сотрудника</h3>
-                    <a href="#" title="Close" class="close">×</a>
+                    <a (click)="closeWindow()" title="Close" class="close">×</a>
                 </div>
                 <div class="modal-body">
                     <p>Вы уверены, что хотите удалить {{person.firstName}} {{person.lastName}}?</p>
@@ -79,11 +82,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title">Создание сотрудника</h3>
-                    <a href="#" title="Close" class="close">×</a>
+                    <a (click)="closeWindow()" title="Close" class="close">×</a>
                 </div>
                 <div class="modal-body">
                     <div class="back">
-                        <a href="#" title="Back" class="back_link">
+                        <a (click)="closeWindow()" title="Back" class="back_link">
                             <img class="icon_back" src="assets/images/icon_back.png" alt="Back"/>Назад к списку</a>
                     </div>
                     <form #createForm="ngForm" novalidate>

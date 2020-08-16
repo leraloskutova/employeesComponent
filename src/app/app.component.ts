@@ -12,17 +12,21 @@ export class AppComponent implements OnInit {
 
     persons: Person[]=[];
     person: Person = new Person();
+    error:any;
 
     constructor(private httpService: HttpService){}
 
     ngOnInit(){
-        this.httpService.getData().subscribe(data => this.persons=(data as Array<Person>));
+        this.httpService.getData().subscribe(
+            (data: Person[]) => this.persons=(data),
+            error => {this.error = error.message; console.log(error);});
     }
 
     put(person: Person){
         this.httpService.putData(person).subscribe((data: Person) => this.person=data);
         window.location.href = "#";
     }
+
 
     post(person: Person){
         this.httpService.postData(person).subscribe((data: Person) => this.person=data);
@@ -35,7 +39,7 @@ export class AppComponent implements OnInit {
     }
 
     closeWindow() {
-        window.location.href = "#";
+        window.location.href = "http://localhost:4200/";
     }
 
     selectRow(person){

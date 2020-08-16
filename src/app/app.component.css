@@ -1,12 +1,42 @@
+/* фиксация положения кнопки "Добавить сотрудника" */
+.menu {
+    width: 100%;
+    background-color: #fff;
+    height: 60px;
+    position: fixed;
+    text-align: center;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+/* свойства кнопки "Добавить сотрудника" */
+.create {
+    width: 200px;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #42a8af;
+    margin: 10px auto;
+}
+.create:hover {
+    cursor: pointer;
+    background-color: #398f95;
+}
+.create_link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px;
+}
 .container {
     width: 100%;
 }
 table {
     width: 70%;
-    min-width: 500px;
+    min-width: 320px;
     max-width: 1180px;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-top: 60px;
 }
 th {
     text-align: left;
@@ -42,25 +72,6 @@ td {
 .delete:hover {
     opacity: 1;
 }
-/* свойства кнопки "Добавить сотрудника" */
-.create {
-    width: 200px;
-    padding: 10px 0;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    background-color: #42a8af;
-}
-.create:hover {
-    cursor: pointer;
-    background-color: #398f95;
-}
-.create_link {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2em;
-    padding: 10px;
-}
 /* свойства модального окна по умолчанию */
 .modal {
     position: fixed;
@@ -81,15 +92,9 @@ td {
 /* ширина модального окна и его отступы от экрана */
 .modal-dialog {
     position: relative;
-    width: auto;
-    margin: 10px;
-    min-width: 500px;
-}
-@media (min-width: 500px) {
-    .modal-dialog {
-        max-width: 500px;
-        margin: 30px auto;
-    }
+    margin: 80px auto;
+    min-width: 280px;
+    max-width: 500px;
 }
 /* свойства для блока, содержащего контент модального окна */
 .modal-content {
@@ -99,11 +104,7 @@ td {
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
     outline: 0;
-}
-@media (min-width: 768px) {
-    .modal-content {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-    }
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 /* свойства для заголовка модального окна */
 .modal-header {
@@ -178,4 +179,18 @@ td {
 }
 .button:hover {
     cursor: pointer;
+}
+@media (min-width: 280px) and (max-width: 768px) and (orientation: portrait){
+    table {
+        width: 100%;
+    }
+    td {
+        padding: 0;
+    }
+    .modal-dialog {
+        margin-top: 50%;
+    }
+    .modal-content {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
 }

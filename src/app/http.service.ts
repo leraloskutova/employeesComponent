@@ -5,10 +5,12 @@ import {Person} from './person';
 @Injectable()
 export class HttpService{
 
+    private url = "http://localhost:3000/api/v1/persons";
     constructor(private http: HttpClient){ }
 
     getData(){
-        return this.http.get('http://localhost:3000/api/v1/persons');
+        // return this.http.get('http://localhost:3000/api/v1/persons');
+        return this.http.get(this.url);
     }
 
     putData(person: Person){

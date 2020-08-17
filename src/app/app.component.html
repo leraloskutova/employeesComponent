@@ -1,6 +1,7 @@
 <div class="menu">
     <div class="create">
-        <a href="#createPerson" title="Create" class="create_link">Добавить сотрудника</a>
+        <a href="#createPerson" title="Create"
+           class="create_link">Добавить сотрудника</a>
     </div>
 </div>
 
@@ -31,7 +32,7 @@
         </tr>
     </table>
     <div>{{error}}</div>
-<!-- модальное окно редактирования сотрудника -->
+    <!-- модальное окно редактирования сотрудника -->
     <div id="editPerson" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -42,13 +43,17 @@
                 <div class="modal-body">
                     <div class="back">
                         <a (click)="closeWindow()" title="Back" class="back_link">
-                            <img class="icon_back" src="assets/images/icon_back.png" alt="Back"/>Назад к списку</a>
+                            <img class="icon_back" src="assets/images/icon_back.png"
+                                 alt="Back"/>Назад к списку</a>
                     </div>
+                    <!-- форма модального окна -->
                     <form #editForm="ngForm" novalidate>
                         <input class="input_data" type="text" name="firstName"
-                               value="{{person.firstName}}" [(ngModel)]="person.firstName" required><br>
+                               value="{{person.firstName}}" [(ngModel)]="person.firstName"
+                               required pattern="[A-Za-zА-Яа-яЁё]{1,}"/><br>
                         <input class="input_data" type="text" name="lastName"
-                               value="{{person.lastName}}" [(ngModel)]="person.lastName" required><br>
+                               value="{{person.lastName}}" [(ngModel)]="person.lastName"
+                               required  pattern="[A-Za-zА-Яа-яЁё]{1,}"/><br>
                         <input [disabled]="editForm.invalid" class="button" type="submit"
                                (click)="put(person)" value="Сохранить">
                     </form>
@@ -56,7 +61,7 @@
             </div>
         </div>
     </div>
-
+    <!-- модальное окно удаления сотрудника -->
     <div id="deletePerson" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -76,7 +81,7 @@
             </div>
         </div>
     </div>
-
+    <!-- модальное окно добавления сотрудника -->
     <div id="createPerson" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -87,13 +92,27 @@
                 <div class="modal-body">
                     <div class="back">
                         <a (click)="closeWindow()" title="Back" class="back_link">
-                            <img class="icon_back" src="assets/images/icon_back.png" alt="Back"/>Назад к списку</a>
+                            <img class="icon_back" src="assets/images/icon_back.png"
+                                 alt="Back"/>Назад к списку</a>
                     </div>
+                    <!-- форма модального окна -->
                     <form #createForm="ngForm" novalidate>
-                        <input class="input_data" type="text" name="firstName" [(ngModel)]="person.firstName"
-                               placeholder="Введите имя сотрудника" required/><br>
-                        <input class="input_data" type="text" name="lastName" [(ngModel)]="person.lastName"
-                               placeholder="Введите фамилию сотрудника" required/><br>
+                        <input class="input_data" type="text"
+                               name="firstName" [(ngModel)]="person.firstName"
+                               placeholder="Введите имя сотрудника"
+                               required pattern="[A-Za-zА-Яа-яЁё]{1,}" #firstName="ngModel"/>
+                        <!-- валидация поля ввода имени -->
+                        <div [hidden]="firstName.valid || firstName.untouched" class="alert">
+                            Некорректное имя
+                        </div>
+                        <input class="input_data" type="text"
+                               name="lastName" [(ngModel)]="person.lastName"
+                               placeholder="Введите фамилию сотрудника"
+                               required pattern="[A-Za-zА-Яа-яЁё]{1,}" #lastName="ngModel"/><br>
+                        <!-- валидация поля ввода фамилии -->
+                        <div [hidden]="lastName.valid || lastName.untouched" class="alert">
+                            Некорректная фамилия
+                        </div>
                         <input [disabled]="createForm.invalid" class="button" type="submit"
                                (click)="post(person)" value="Сохранить">
                     </form>
